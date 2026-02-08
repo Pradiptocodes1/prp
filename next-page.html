@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yay!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #FFE5F1 0%, #FFB6E8 25%, #FF69B4 50%, #FFB6D9 75%, #FFC9E3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            animation: gradient-shift 5s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 5em;
+            font-weight: 900;
+            color: white;
+            text-shadow: 5px 5px 0px rgba(255, 20, 147, 0.8),
+                         10px 10px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            animation: heartbeat 1.5s ease infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+
+        .message {
+            font-size: 2.5em;
+            font-weight: 400;
+            color: white;
+            text-shadow: 3px 3px 0px rgba(255, 20, 147, 0.6);
+            margin-bottom: 50px;
+            animation: float-text 3s ease infinite;
+            letter-spacing: 1px;
+        }
+
+        @keyframes float-text {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .gif-container {
+            margin: 40px auto;
+            max-width: 500px;
+        }
+
+        .gif-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 8px solid white;
+        }
+
+        .hearts {
+            position: fixed;
+            font-size: 40px;
+            animation: rise 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: sparkle 2s ease infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>We're Going to Have the Best Valentine's Day babeee</h1>
+        <div class="message">
+            Can't wait to spend it with you
+        </div>
+        <div class="gif-container">
+            <img src="y1.gif" alt="Happy couple">
+        </div>
+    </div>
+
+    <script>
+        // Create rising hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'hearts';
+            heart.innerHTML = '♥';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+
+        // Generate hearts continuously
+        setInterval(createHeart, 300);
+
+        // Generate sparkles continuously
+        setInterval(createSparkle, 200);
+
+        // Initial burst
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createHeart, i * 100);
+            setTimeout(createSparkle, i * 50);
+        }
+
+        // Redirect to final page after 5 seconds
+        setTimeout(function() {
+            window.location.href = 'final-page.html';
+        }, 8000);
+    </script>
+</body>
+</html>

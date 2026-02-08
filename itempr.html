@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Day Surprises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(-45deg, #ffeef8, #ffe0f0, #ffd4e5, #ffc2d9);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff6b9d;
+            margin-bottom: 50px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-align: center;
+            text-shadow: 2px 2px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .item-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 192, 217, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.2);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .item-card:nth-child(1) { animation-delay: 0.1s; }
+        .item-card:nth-child(2) { animation-delay: 0.2s; }
+        .item-card:nth-child(3) { animation-delay: 0.3s; }
+        .item-card:nth-child(4) { animation-delay: 0.4s; }
+        .item-card:nth-child(5) { animation-delay: 0.5s; }
+        .item-card:nth-child(6) { animation-delay: 0.6s; }
+        .item-card:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .item-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+        }
+
+        .item-card:hover .box {
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            position: relative;
+            filter: drop-shadow(0 10px 20px rgba(255, 105, 180, 0.3));
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                filter: drop-shadow(0 10px 20px rgba(255, 105, 180, 0.3));
+            }
+            50% {
+                filter: drop-shadow(0 15px 30px rgba(255, 105, 180, 0.6));
+            }
+        }
+
+        .box svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .item-label {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #ff6b9d;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .item-price {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #4a4a4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .rupee-symbol {
+            font-size: 0.9em;
+        }
+
+        /* Total Section */
+        .total-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid rgba(255, 192, 217, 0.5);
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3);
+            opacity: 0;
+            animation: fadeInScale 0.8s ease 1s forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .total-label {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .total-price {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b9d, #ff8fb3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            animation: countUp 2s ease 1.2s forwards;
+        }
+
+        .total-price .rupee-symbol {
+            font-size: 0.8em;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .items-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .items-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .total-price {
+                font-size: 2.5em;
+            }
+
+            .box {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PROPOSE DAY SURPRISES</h1>
+
+        <div class="items-grid">
+            <!-- Item 1 -->
+            <div class="item-card">
+                <div class="box">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="80" width="140" height="100" fill="#ff8fb3" stroke="#ff6b9d" stroke-width="3"/>
+                        <rect x="20" y="60" width="160" height="30" fill="#ff6b9d" stroke="#ff4d7d" stroke-width="3"/>
+                        <rect x="90" y="60" width="20" height="120" fill="#fff0f5"/>
+                        <rect x="20" y="120" width="160" height="20" fill="#fff0f5"/>
+                        <ellipse cx="80" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <ellipse cx="120" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <circle cx="100" cy="50" r="12" fill="#ff6b9d"/>
+                        <text x="100" y="150" font-size="50" font-weight="bold" fill="#ffffff" text-anchor="middle">?</text>
+                    </svg>
+                </div>
+                <div class="item-label">ITEM 1</div>
+                <div class="item-price">
+                    <span class="rupee-symbol">₹</span>
+                    <span>75</span>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="item-card">
+                <div class="box">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="80" width="140" height="100" fill="#ff8fb3" stroke="#ff6b9d" stroke-width="3"/>
+                        <rect x="20" y="60" width="160" height="30" fill="#ff6b9d" stroke="#ff4d7d" stroke-width="3"/>
+                        <rect x="90" y="60" width="20" height="120" fill="#fff0f5"/>
+                        <rect x="20" y="120" width="160" height="20" fill="#fff0f5"/>
+                        <ellipse cx="80" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <ellipse cx="120" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <circle cx="100" cy="50" r="12" fill="#ff6b9d"/>
+                        <text x="100" y="150" font-size="50" font-weight="bold" fill="#ffffff" text-anchor="middle">?</text>
+                    </svg>
+                </div>
+                <div class="item-label">ITEM 2</div>
+                <div class="item-price">
+                    <span class="rupee-symbol">₹</span>
+                    <span>19</span>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="item-card">
+                <div class="box">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="80" width="140" height="100" fill="#ff8fb3" stroke="#ff6b9d" stroke-width="3"/>
+                        <rect x="20" y="60" width="160" height="30" fill="#ff6b9d" stroke="#ff4d7d" stroke-width="3"/>
+                        <rect x="90" y="60" width="20" height="120" fill="#fff0f5"/>
+                        <rect x="20" y="120" width="160" height="20" fill="#fff0f5"/>
+                        <ellipse cx="80" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <ellipse cx="120" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <circle cx="100" cy="50" r="12" fill="#ff6b9d"/>
+                        <text x="100" y="150" font-size="50" font-weight="bold" fill="#ffffff" text-anchor="middle">?</text>
+                    </svg>
+                </div>
+                <div class="item-label">ITEM 3</div>
+                <div class="item-price">
+                    <span class="rupee-symbol">₹</span>
+                    <span>39</span>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="item-card">
+                <div class="box">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="80" width="140" height="100" fill="#ff8fb3" stroke="#ff6b9d" stroke-width="3"/>
+                        <rect x="20" y="60" width="160" height="30" fill="#ff6b9d" stroke="#ff4d7d" stroke-width="3"/>
+                        <rect x="90" y="60" width="20" height="120" fill="#fff0f5"/>
+                        <rect x="20" y="120" width="160" height="20" fill="#fff0f5"/>
+                        <ellipse cx="80" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <ellipse cx="120" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <circle cx="100" cy="50" r="12" fill="#ff6b9d"/>
+                        <text x="100" y="150" font-size="50" font-weight="bold" fill="#ffffff" text-anchor="middle">?</text>
+                    </svg>
+                </div>
+                <div class="item-label">ITEM 4</div>
+                <div class="item-price">
+                    <span class="rupee-symbol">₹</span>
+                    <span>19</span>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="item-card">
+                <div class="box">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="80" width="140" height="100" fill="#ff8fb3" stroke="#ff6b9d" stroke-width="3"/>
+                        <rect x="20" y="60" width="160" height="30" fill="#ff6b9d" stroke="#ff4d7d" stroke-width="3"/>
+                        <rect x="90" y="60" width="20" height="120" fill="#fff0f5"/>
+                        <rect x="20" y="120" width="160" height="20" fill="#fff0f5"/>
+                        <ellipse cx="80" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <ellipse cx="120" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <circle cx="100" cy="50" r="12" fill="#ff6b9d"/>
+                        <text x="100" y="150" font-size="50" font-weight="bold" fill="#ffffff" text-anchor="middle">?</text>
+                    </svg>
+                </div>
+                <div class="item-label">ITEM 5</div>
+                <div class="item-price">
+                    <span class="rupee-symbol">₹</span>
+                    <span>39</span>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="item-card">
+                <div class="box">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="80" width="140" height="100" fill="#ff8fb3" stroke="#ff6b9d" stroke-width="3"/>
+                        <rect x="20" y="60" width="160" height="30" fill="#ff6b9d" stroke="#ff4d7d" stroke-width="3"/>
+                        <rect x="90" y="60" width="20" height="120" fill="#fff0f5"/>
+                        <rect x="20" y="120" width="160" height="20" fill="#fff0f5"/>
+                        <ellipse cx="80" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <ellipse cx="120" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <circle cx="100" cy="50" r="12" fill="#ff6b9d"/>
+                        <text x="100" y="150" font-size="50" font-weight="bold" fill="#ffffff" text-anchor="middle">?</text>
+                    </svg>
+                </div>
+                <div class="item-label">ITEM 6</div>
+                <div class="item-price">
+                    <span class="rupee-symbol">₹</span>
+                    <span>183</span>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="item-card">
+                <div class="box">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="80" width="140" height="100" fill="#ff8fb3" stroke="#ff6b9d" stroke-width="3"/>
+                        <rect x="20" y="60" width="160" height="30" fill="#ff6b9d" stroke="#ff4d7d" stroke-width="3"/>
+                        <rect x="90" y="60" width="20" height="120" fill="#fff0f5"/>
+                        <rect x="20" y="120" width="160" height="20" fill="#fff0f5"/>
+                        <ellipse cx="80" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <ellipse cx="120" cy="50" rx="25" ry="15" fill="#ffc2d9"/>
+                        <circle cx="100" cy="50" r="12" fill="#ff6b9d"/>
+                        <text x="100" y="150" font-size="50" font-weight="bold" fill="#ffffff" text-anchor="middle">?</text>
+                    </svg>
+                </div>
+                <div class="item-label">ITEM 7</div>
+                <div class="item-price">
+                    <span class="rupee-symbol">₹</span>
+                    <span>49</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="total-section">
+            <div class="total-label">COMBINED TOTAL</div>
+            <div class="total-price">
+                <span class="rupee-symbol">₹</span>
+                <span id="totalAmount">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animated counter for total price
+        function animateCounter() {
+            const targetValue = 423; // 75 + 19 + 39 + 19 + 39 + 183 + 49
+            const duration = 1500; // 1.5 seconds
+            const startTime = performance.now();
+            const totalElement = document.getElementById('totalAmount');
+
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth animation
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const currentValue = Math.floor(easeOutQuart * targetValue);
+                
+                totalElement.textContent = currentValue;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    totalElement.textContent = targetValue;
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Intersection Observer to trigger animation when total section is visible
+        const totalSection = document.querySelector('.total-section');
+        let hasAnimated = false;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    hasAnimated = true;
+                    // Small delay for visual effect
+                    setTimeout(() => {
+                        animateCounter();
+                    }, 300);
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the element is visible
+        });
+
+        // Start observing when page loads
+        window.addEventListener('load', () => {
+            observer.observe(totalSection);
+        });
+    </script>
+</body>
+</html>
